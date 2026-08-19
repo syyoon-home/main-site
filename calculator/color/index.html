@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>컬러 코드 변환기 - HEX RGB HSL 변환, 팔레트 추출 | SY Project</title>
+<meta name="description" content="HEX, RGB, HSL 색상 코드를 실시간으로 상호 변환하는 무료 온라인 도구. 보색·유사색·삼색조 팔레트 추출과 이미지에서 주요 색상 6개 뽑기까지 지원하며 브라우저 안에서만 동작합니다.">
+<meta name="keywords" content="컬러코드변환, hex rgb 변환, rgb hsl 변환, 색상 팔레트 추출, color picker, hex to rgb, 컬러 팔레트 생성기, 이미지 색상 추출, 웹디자인 도구">
+<meta name="author" content="SY Project">
+<link rel="canonical" href="https://syproject.co.kr/calculator/color/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="컬러 코드 변환기 - HEX RGB HSL 변환, 팔레트 추출">
+<meta property="og:description" content="HEX, RGB, HSL 색상 코드를 실시간으로 상호 변환하고, 보색·유사색·삼색조 팔레트와 이미지 색상 추출까지 지원하는 무료 도구.">
+<meta property="og:url" content="https://syproject.co.kr/calculator/color/">
+<meta property="og:locale" content="ko_KR">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="컬러 코드 변환기 - HEX RGB HSL 변환">
+<meta name="twitter:description" content="HEX, RGB, HSL 색상 코드를 실시간으로 상호 변환하는 무료 온라인 도구.">
+
+<!-- Favicon (inline SVG) -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%2315171B%22/><circle cx=%2250%22 cy=%2250%22 r=%2226%22 fill=%22%232E9E8E%22/></svg>">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2E9E8E">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<!-- Google AdSense 자동 광고 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6050400939455736" crossorigin="anonymous"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6050400939455736",
+    enable_page_level_ads: true
+  });
+</script>
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <span class="eyebrow">CLR · LAB</span>
+    <h1>컬러 코드 변환기</h1>
+    <p class="tagline">HEX, RGB, HSL 값을 실시간으로 서로 변환하고, 색상 하나 또는 이미지 한 장에서 팔레트를 뽑아보세요.</p>
+  </header>
+
+  <section class="chip-card" aria-label="색상 변환 카드">
+    <div class="chip-top">
+      <span class="chip-fg-note" id="fgNote" style="color:var(--muted); opacity:1;">
+        <span class="chip-fg-dot" id="fgDot" style="background:var(--muted);"></span>
+        <span id="fgText">텍스트는 밝은색 권장</span>
+      </span>
+      <div class="chip-actions">
+        <button class="ghost-btn" id="randomBtn" type="button">랜덤 색상</button>
+      </div>
+    </div>
+
+    <div class="chip-swatch" id="swatch"></div>
+    <div class="chip-perf" aria-hidden="true"></div>
+
+    <div class="chip-label">
+      <div class="field">
+        <div class="field-head">
+          <label for="hexInput">HEX</label>
+          <button class="copy-btn" data-copy-input="hexInput" type="button">복사</button>
+        </div>
+        <input id="hexInput" class="hex-input" type="text" maxlength="7" spellcheck="false" autocomplete="off" value="#2E9E8E">
+      </div>
+
+      <div class="field">
+        <div class="field-head">
+          <label>RGB</label>
+          <button class="copy-btn" id="copyRgb" type="button">복사</button>
+        </div>
+        <div class="slider-row">
+          <span class="slider-tag">R</span>
+          <input type="range" id="rSlider" min="0" max="255" step="1" value="46">
+          <span class="slider-val" id="rVal">46</span>
+        </div>
+        <div class="slider-row">
+          <span class="slider-tag">G</span>
+          <input type="range" id="gSlider" min="0" max="255" step="1" value="158">
+          <span class="slider-val" id="gVal">158</span>
+        </div>
+        <div class="slider-row">
+          <span class="slider-tag">B</span>
+          <input type="range" id="bSlider" min="0" max="255" step="1" value="142">
+          <span class="slider-val" id="bVal">142</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="field-head">
+          <label>HSL</label>
+          <button class="copy-btn" id="copyHsl" type="button">복사</button>
+        </div>
+        <div class="slider-row">
+          <span class="slider-tag">H</span>
+          <input type="range" id="hSlider" min="0" max="360" step="1" value="169">
+          <span class="slider-val" id="hVal">169°</span>
+        </div>
+        <div class="slider-row">
+          <span class="slider-tag">S</span>
+          <input type="range" id="sSlider" min="0" max="100" step="1" value="55">
+          <span class="slider-val" id="sVal">55%</span>
+        </div>
+        <div class="slider-row">
+          <span class="slider-tag">L</span>
+          <input type="range" id="lSlider" min="0" max="100" step="1" value="40">
+          <span class="slider-val" id="lVal">40%</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="palette-card" aria-label="팔레트 추출">
+    <div class="palette-head">
+      <h2>팔레트 추출</h2>
+      <p class="palette-hint">스와치를 클릭하면 코드가 복사됩니다</p>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" data-mode="complementary" type="button">보색</button>
+      <button class="tab-btn" data-mode="analogous" type="button">유사색</button>
+      <button class="tab-btn" data-mode="triadic" type="button">삼색조</button>
+      <button class="tab-btn" data-mode="shades" type="button">명도 단계</button>
+      <button class="tab-btn" data-mode="image" type="button">이미지에서 추출</button>
+    </div>
+
+    <div id="imageTabPanel" style="display:none; margin-bottom:14px;">
+      <label class="drop-zone" id="dropZone" for="imageInput">
+        <strong>이미지를 드래그하거나 클릭</strong>해서 업로드하면<br>주요 색상 6개를 뽑아드려요.
+        <input id="imageInput" type="file" accept="image/*">
+      </label>
+      <p style="font-size:11px; color:var(--muted); margin:8px 2px 0;">업로드한 이미지는 서버에 저장되지 않고, 브라우저 안에서만 분석 후 즉시 사라져요.</p>
+    </div>
+
+    <div class="swatch-grid" id="paletteGrid"></div>
+  </section>
+
+  <footer class="site-footer-note">
+    모든 변환과 이미지 분석은 브라우저 안에서만 이루어지며, 어떤 데이터도 서버로 전송되지 않습니다.
+    <div class="legal-links">
+      <a href="/">홈</a> · <a href="/privacy.html">개인정보처리방침</a> · <a href="/terms.html">이용약관</a>
+    </div>
+  </footer>
+
+</div>
+
+<canvas id="hiddenCanvas" style="display:none;"></canvas>
+<div class="toast" id="toast">복사됨</div>
+
+<script src="script.js"></script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("service-worker.js").catch(() => {});
+    });
+  }
+</script>
+<script src="/pwa/install-prompt.js" defer></script>
+</body>
+</html>

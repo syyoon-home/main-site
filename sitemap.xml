@@ -75,6 +75,13 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- 컬러 코드 변환기 -->
+  <url>
+    <loc>https://syproject.co.kr/calculator/color/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- 퇴사일 계산기 -->
   <url>
     <loc>https://syproject.co.kr/calculator/pay/</loc>
