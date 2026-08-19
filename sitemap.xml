@@ -43,6 +43,16 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+  <url>
+    <loc>https://syproject.co.kr/about.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://syproject.co.kr/contact.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
 
   <!-- 진수 변환기 -->
   <url>
@@ -115,6 +125,20 @@
     <loc>https://syproject.co.kr/travel/jptrip/shopping.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <!-- 이름 획수 궁합 -->
+  <url>
+    <loc>https://syproject.co.kr/fortune/name-strokes/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 꽃잎 점 -->
+  <url>
+    <loc>https://syproject.co.kr/fortune/petal/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
 
 </urlset>

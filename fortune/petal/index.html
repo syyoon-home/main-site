@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>꽃잎 점 - 그렇다 아니다 무료 Yes or No 점치기 | SY Project</title>
+<meta name="description" content="궁금한 것을 물으면 꽃잎이 하나씩 떨어지며 그렇다 혹은 아니다로 답하는 무료 꽃잎 점치기 웹 도구. 심심풀이 Yes or No 운세를 감성적인 애니메이션으로 즐겨보세요.">
+<meta name="keywords" content="꽃잎점, 꽃잎점치기, yes or no 점, 데이지점, 오늘의운세, 심심풀이운세, 그렇다아니다, 연애운, 무료운세">
+<meta name="author" content="SY Project">
+<link rel="canonical" href="https://syproject.co.kr/fortune/petal/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="꽃잎 점 - 그렇다 아니다 무료 Yes or No 점치기">
+<meta property="og:description" content="궁금한 것을 물으면 꽃잎이 하나씩 떨어지며 답하는 감성적인 무료 점치기 웹 도구.">
+<meta property="og:url" content="https://syproject.co.kr/fortune/petal/">
+<meta property="og:locale" content="ko_KR">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="꽃잎 점 - 무료 Yes or No 점치기">
+<meta name="twitter:description" content="궁금한 것을 물으면 꽃잎이 하나씩 떨어지며 답하는 무료 웹 도구.">
+
+<!-- Favicon (inline SVG) -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%232a1d42%22/><circle cx=%2250%22 cy=%2250%22 r=%2210%22 fill=%22%23e0a94f%22/><ellipse cx=%2250%22 cy=%2226%22 rx=%2211%22 ry=%2218%22 fill=%22%23f0b9c7%22/><ellipse cx=%2250%22 cy=%2274%22 rx=%2211%22 ry=%2218%22 fill=%22%23f0b9c7%22 opacity=%220.85%22/><ellipse cx=%2226%22 cy=%2250%22 rx=%2218%22 ry=%2211%22 fill=%22%23f0b9c7%22 opacity=%220.85%22/><ellipse cx=%2274%22 cy=%2250%22 rx=%2218%22 ry=%2211%22 fill=%22%23f0b9c7%22 opacity=%220.7%22/></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<!-- Google AdSense 자동 광고 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6050400939455736" crossorigin="anonymous"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6050400939455736",
+    enable_page_level_ads: true
+  });
+</script>
+</head>
+<body>
+
+<div class="home-link"><a href="/">← SY Project 홈으로</a></div>
+
+<div class="dust" id="dust"></div>
+
+<div class="stage">
+  <div class="slip">
+    <div class="eyebrow">Petal Divination</div>
+    <h1>꽃잎 점</h1>
+    <div class="sub">궁금한 것을 물으면, 꽃잎이 하나씩 떨어지며<br>그렇다 혹은 아니다로 답합니다.</div>
+
+    <!-- 질문 입력 화면 -->
+    <div id="screen-ask">
+      <div class="field">
+        <label for="q">묻고 싶은 것</label>
+        <textarea id="q" placeholder="예: 오늘 그 사람에게 연락이 올까?" maxlength="80"></textarea>
+      </div>
+      <button class="btn" id="startBtn">꽃잎 뽑기</button>
+    </div>
+
+    <!-- 점치는 화면 -->
+    <div id="screen-read">
+      <div class="question-tag">Q.</div>
+      <div class="question-text" id="qDisplay"></div>
+
+      <div class="count-row">
+        <span class="count-num" id="remainNum">0</span>
+        <span class="count-label">남은 꽃잎</span>
+      </div>
+
+      <div class="flower-wrap">
+        <svg id="flowerSvg" viewBox="0 0 400 500"></svg>
+        <div class="word-pop" id="wordPop"></div>
+      </div>
+      <div class="hint" id="hint">꽃잎을 하나씩 눌러 떼어보세요</div>
+      <button class="btn ghost auto-btn" id="autoBtn">자동으로 떨구기</button>
+      <div class="ground" id="ground"></div>
+
+      <!-- 결과 -->
+      <div id="result">
+        <div class="result-label">The Answer Is</div>
+        <div class="result-word" id="resultWord">그렇다</div>
+        <div class="result-line" id="resultLine"></div>
+        <div class="result-btns">
+          <button class="btn ghost" id="retryBtn">같은 질문으로 다시</button>
+          <button class="btn" id="newBtn">새 질문하기</button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer-note">
+      <a href="/">홈</a> · <a href="/privacy.html">개인정보처리방침</a> · <a href="/terms.html">이용약관</a>
+    </footer>
+
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

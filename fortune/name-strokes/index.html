@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이름 획수 궁합 - 이름으로 보는 궁합 무료 계산기 | SY Project</title>
+<meta name="description" content="두 사람의 이름 획수로 궁합을 계산하는 무료 웹 도구. 초성·중성·종성 획수를 전통 방식으로 줄여가며 궁합 퍼센트를 확인하고, 결과를 이미지로 저장해 공유할 수 있습니다.">
+<meta name="keywords" content="이름궁합, 이름 획수 궁합, 궁합계산기, 이름 궁합 무료, 성명학 궁합, 커플 이름궁합, 짝궁합, 이름 획수 계산">
+<meta name="author" content="SY Project">
+<link rel="canonical" href="https://syproject.co.kr/fortune/name-strokes/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="이름 획수 궁합 - 이름으로 보는 궁합 무료 계산기">
+<meta property="og:description" content="두 사람의 이름 획수를 전통 방식으로 줄여가며 궁합 퍼센트를 확인하는 무료 도구. 결과는 이미지로 저장해 바로 공유할 수 있어요.">
+<meta property="og:url" content="https://syproject.co.kr/fortune/name-strokes/">
+<meta property="og:locale" content="ko_KR">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="이름 획수 궁합 - 무료 이름궁합 계산기">
+<meta name="twitter:description" content="두 사람의 이름 획수로 궁합을 계산하는 무료 웹 도구.">
+
+<!-- Favicon (inline SVG) -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%23c85a4a%22/><text x=%2250%22 y=%2266%22 font-family=%22sans-serif%22 font-weight=%22800%22 font-size=%2250%22 fill=%22%23fff8ef%22 text-anchor=%22middle%22>%E7%B8%81</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<!-- Google AdSense 자동 광고 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6050400939455736" crossorigin="anonymous"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6050400939455736",
+    enable_page_level_ads: true
+  });
+</script>
+</head>
+<body>
+<div class="page">
+
+  <div class="home-link"><a href="/">← SY Project 홈으로</a></div>
+
+  <h1>이름 획수 궁합</h1>
+  <div class="sub">두 사람의 이름을 초성·중성·종성 획수로 쪼갠 뒤, 옛날 방식 그대로 숫자를 한 줄씩 줄여가며 궁합을 계산해요. (재미로만 봐주세요 🙂)</div>
+  <div class="privacy-note">🔒 입력한 이름은 서버로 전송되거나 저장되지 않아요. 모든 계산은 이 화면 안에서만 이뤄집니다.</div>
+
+  <div class="row">
+    <div class="field">
+      <label>이름 1 (본명·태명·닉네임 모두 가능)</label>
+      <input id="name1" type="text" maxlength="12" placeholder="예: 김민수, 콩콩이, 라떼">
+    </div>
+    <div class="field">
+      <label>이름 2</label>
+      <input id="name2" type="text" maxlength="12" placeholder="예: 박지우, 초코, 냥냥이">
+    </div>
+  </div>
+  <div class="actions">
+    <button class="primary" id="calcBtn">궁합 계산하기</button>
+    <button class="ghost" id="resetBtn">초기화</button>
+  </div>
+  <div class="error" id="errorMsg"></div>
+  <div class="info-note" id="infoNote"></div>
+
+  <div id="stage2">
+    <div class="section-title">① 글자 획수 세기</div>
+    <div id="decomp"></div>
+  </div>
+
+  <div id="stage3">
+    <div class="section-title">② 숫자 줄여가기</div>
+    <div id="pyramid"></div>
+  </div>
+
+  <div id="result">
+    <div class="percent" id="percentNum">--<span>%</span></div>
+    <div class="meter"><div class="meter-fill" id="meterFill"></div></div>
+    <div class="message" id="message"></div>
+    <div class="share-row">
+      <button class="share" id="shareBtn">📸 이미지로 저장/공유</button>
+    </div>
+    <div class="share-hint" id="shareHint">저장한 이미지를 카카오톡 등에 첨부해서 보내보세요</div>
+  </div>
+
+  <canvas id="cardCanvas" width="900" height="900" style="display:none;"></canvas>
+
+  <div class="footnote">한글 자모 획수를 기준으로 한 전통적인 놀이 방식의 궁합 계산기이며, 과학적 근거가 있는 진단은 아니에요.</div>
+
+  <footer class="site-footer-note">
+    <a href="/">홈</a> · <a href="/privacy.html">개인정보처리방침</a> · <a href="/terms.html">이용약관</a>
+  </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
