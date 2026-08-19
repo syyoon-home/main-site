@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>진수 변환기 - 2진수 8진수 10진수 16진수 실시간 변환 | Radix Bench</title>
+<meta name="description" content="2진수, 8진수, 10진수, 16진수를 실시간으로 변환하는 무료 온라인 도구. 비트 시각화, 2의 보수 음수 표현, 비트 연산(AND/OR/XOR/NOT/시프트), 진법 덧셈뺄셈 계산기를 지원합니다.">
+<meta name="keywords" content="진수변환, 2진수변환, 16진수변환, 8진수변환, 진법변환기, binary converter, hex converter, 비트연산, 2의보수, bit calculator, 진수 계산기">
+<meta name="author" content="Radix Bench">
+<link rel="canonical" href="https://syproject.co.kr/calculator/base/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="진수 변환기 - 2/8/10/16진수 실시간 변환 도구">
+<meta property="og:description" content="2진수, 8진수, 10진수, 16진수 실시간 변환과 비트 시각화, 비트 연산, 2의 보수 계산까지 제공하는 무료 개발자 도구입니다.">
+<meta property="og:url" content="https://syproject.co.kr/calculator/base/">
+<meta property="og:image" content="https://syproject.co.kr/calculator/base/og-image.png">
+<meta property="og:locale" content="ko_KR">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="진수 변환기 - 2/8/10/16진수 실시간 변환 도구">
+<meta name="twitter:description" content="2진수, 8진수, 10진수, 16진수 실시간 변환, 비트 시각화, 비트 연산까지 지원하는 무료 도구.">
+
+<!-- Favicon (inline SVG, no asset file needed) -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%23142019%22/><text x=%2250%22 y=%2264%22 font-family=%22monospace%22 font-weight=%22700%22 font-size=%2244%22 fill=%22%23FFB020%22 text-anchor=%22middle%22>10</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+<!-- Google AdSense 자동 광고 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6050400939455736" crossorigin="anonymous"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6050400939455736",
+    enable_page_level_ads: true
+  });
+</script>
+
+<!-- 구조화 데이터: WebApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Radix Bench - 진수 변환기",
+  "url": "https://syproject.co.kr/calculator/base/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "description": "2진수, 8진수, 10진수, 16진수를 실시간으로 변환하고 비트 연산, 2의 보수 표현, 비트 시각화를 제공하는 무료 웹 도구.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  },
+  "inLanguage": "ko"
+}
+</script>
+
+<!-- 구조화 데이터: FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "2진수를 10진수로 어떻게 변환하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "2진수의 각 자릿수에 오른쪽부터 2의 0제곱, 1제곱, 2제곱... 순서로 자릿값을 곱한 뒤 모두 더하면 10진수가 됩니다. 예를 들어 1010은 1×8 + 0×4 + 1×2 + 0×1 = 10 입니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "16진수는 왜 컴퓨터에서 많이 사용하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "16진수 한 자리는 정확히 4비트를 표현할 수 있어 8비트, 16비트, 32비트 등 컴퓨터의 데이터 단위와 깔끔하게 맞아떨어집니다. 그래서 메모리 주소, 색상 코드, 오류 코드 등을 표기할 때 2진수보다 짧고 8진수보다 규칙적인 16진수가 널리 쓰입니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "2의 보수(Two's complement)란 무엇인가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "2의 보수는 컴퓨터가 음수를 표현하는 대표적인 방식입니다. 어떤 수의 모든 비트를 반전(1의 보수)한 뒤 1을 더하면 그 수의 음수에 해당하는 2의 보수 표현이 됩니다. 덧셈 회로만으로 뺄셈까지 처리할 수 있어 하드웨어 설계가 단순해지는 장점이 있습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "8진수는 요즘도 사용되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "8진수는 과거 컴퓨터 시스템에서 널리 쓰였고, 지금도 유닉스/리눅스 파일 권한(예: chmod 755)이나 일부 이스케이프 시퀀스 표기에 사용됩니다."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">10</span>
+      <span class="brand-name">Radix Bench</span>
+    </div>
+    <nav class="site-nav" aria-label="주요 내비게이션">
+      <a href="#converter">변환기</a>
+      <a href="#bitwise">비트 연산</a>
+      <a href="#history">기록</a>
+      <a href="#guide">진수 가이드</a>
+    </nav>
+    <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="라이트 모드로 전환">
+      <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 019.5 4 8.5 8.5 0 1020 14.5z" fill="currentColor"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="12" y1="1.5" x2="12" y2="4.2"/><line x1="12" y1="19.8" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="4.2" y2="12"/><line x1="19.8" y1="12" x2="22.5" y2="12"/><line x1="4.4" y1="4.4" x2="6.3" y2="6.3"/><line x1="17.7" y1="17.7" x2="19.6" y2="19.6"/><line x1="4.4" y1="19.6" x2="6.3" y2="17.7"/><line x1="17.7" y1="6.3" x2="19.6" y2="4.4"/></g></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO / CONVERTER -->
+  <section id="converter" class="panel-section hero-section">
+    <div class="wrap">
+      <p class="eyebrow">실시간 진법 변환</p>
+      <h1>2진수 · 8진수 · 10진수 · 16진수<br>한 번에 변환하는 계측 패널</h1>
+      <p class="lede">네 칸 중 아무 곳에나 값을 입력하면 나머지가 즉시 계산됩니다. 허용되지 않는 문자는 자동으로 걸러지고, 잘못된 값은 빨간 경고로 표시됩니다.</p>
+
+      <div class="readout-panel" role="group" aria-label="진수 변환 입력 및 결과">
+        <div class="readout-row" data-base="2">
+          <label class="readout-label" for="inputBin"><span class="label-name">BIN</span><span class="label-sub">2진수</span></label>
+          <div class="readout-field">
+            <input id="inputBin" class="readout-input" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" placeholder="0" aria-describedby="errBin">
+            <button class="copy-btn" data-copy-target="inputBin" type="button" aria-label="2진수 값 복사">
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M5 15V5a1 1 0 011-1h10" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+            </button>
+          </div>
+          <p class="field-error" id="errBin" role="alert"></p>
+        </div>
+
+        <div class="readout-row" data-base="8">
+          <label class="readout-label" for="inputOct"><span class="label-name">OCT</span><span class="label-sub">8진수</span></label>
+          <div class="readout-field">
+            <input id="inputOct" class="readout-input" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" placeholder="0" aria-describedby="errOct">
+            <button class="copy-btn" data-copy-target="inputOct" type="button" aria-label="8진수 값 복사">
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M5 15V5a1 1 0 011-1h10" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+            </button>
+          </div>
+          <p class="field-error" id="errOct" role="alert"></p>
+        </div>
+
+        <div class="readout-row is-primary" data-base="10">
+          <label class="readout-label" for="inputDec"><span class="label-name">DEC</span><span class="label-sub">10진수</span></label>
+          <div class="readout-field">
+            <input id="inputDec" class="readout-input" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" placeholder="0" aria-describedby="errDec">
+            <button class="copy-btn" data-copy-target="inputDec" type="button" aria-label="10진수 값 복사">
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M5 15V5a1 1 0 011-1h10" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+            </button>
+          </div>
+          <p class="field-error" id="errDec" role="alert"></p>
+        </div>
+
+        <div class="readout-row" data-base="16">
+          <label class="readout-label" for="inputHex"><span class="label-name">HEX</span><span class="label-sub">16진수</span></label>
+          <div class="readout-field">
+            <input id="inputHex" class="readout-input" type="text" inputmode="text" autocomplete="off" spellcheck="false" placeholder="0" aria-describedby="errHex">
+            <button class="copy-btn" data-copy-target="inputHex" type="button" aria-label="16진수 값 복사">
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M5 15V5a1 1 0 011-1h10" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+            </button>
+          </div>
+          <p class="field-error" id="errHex" role="alert"></p>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <button id="clearAll" class="ghost-btn" type="button">전체 지우기</button>
+        <label class="negtoggle">
+          <input type="checkbox" id="negToggle">
+          <span>음수 · 비트폭 모드 사용</span>
+        </label>
+      </div>
+
+      <!-- 음수 표현 / 비트폭 옵션 -->
+      <div id="negOptions" class="neg-options" hidden>
+        <div class="option-group">
+          <span class="option-title">비트 폭</span>
+          <div class="pill-group" role="radiogroup" aria-label="비트 폭 선택">
+            <button type="button" class="pill" data-bitwidth="8" aria-pressed="true">8비트</button>
+            <button type="button" class="pill" data-bitwidth="16" aria-pressed="false">16비트</button>
+            <button type="button" class="pill" data-bitwidth="32" aria-pressed="false">32비트</button>
+            <button type="button" class="pill" data-bitwidth="64" aria-pressed="false">64비트</button>
+          </div>
+        </div>
+        <div class="option-group">
+          <span class="option-title">음수 표현 방식</span>
+          <div class="pill-group" role="radiogroup" aria-label="음수 표현 방식 선택">
+            <button type="button" class="pill" data-negmode="2comp" aria-pressed="true">2의 보수</button>
+            <button type="button" class="pill" data-negmode="1comp" aria-pressed="false">1의 보수</button>
+            <button type="button" class="pill" data-negmode="signmag" aria-pressed="false">부호-크기</button>
+          </div>
+        </div>
+        <p class="field-error" id="errOverflow" role="alert"></p>
+      </div>
+
+      <!-- 비트 시각화 -->
+      <div class="bitviz" aria-label="비트 단위 시각화">
+        <div class="bitviz-head">
+          <span class="option-title">비트 시각화</span>
+          <span class="bitviz-caption" id="bitvizCaption">4비트씩 색으로 구분됩니다</span>
+        </div>
+        <div id="bitGrid" class="bit-grid" role="img" aria-label="비트 값 표시"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 자동 광고 사용 중: 구글이 페이지 곳곳에 알아서 광고를 배치하므로
+       수동 광고 슬롯은 두지 않았습니다. head의 AdSense 스크립트만 활성화하면 됩니다. -->
+
+  <!-- BITWISE + ARITHMETIC -->
+  <section id="bitwise" class="panel-section">
+    <div class="wrap two-col">
+
+      <div class="tool-card">
+        <h2>비트 연산기</h2>
+        <p class="card-sub">두 값(10진수 기준)을 입력하고 연산자를 선택하세요.</p>
+        <div class="op-row">
+          <label class="op-field">
+            <span>A</span>
+            <input id="bitA" type="text" inputmode="numeric" placeholder="0" autocomplete="off">
+          </label>
+          <label class="op-field op-select">
+            <span>연산</span>
+            <select id="bitOp">
+              <option value="and">AND</option>
+              <option value="or">OR</option>
+              <option value="xor">XOR</option>
+              <option value="not">NOT (A만 사용)</option>
+              <option value="shl">A &lt;&lt; B (좌시프트)</option>
+              <option value="shr">A &gt;&gt; B (우시프트)</option>
+            </select>
+          </label>
+          <label class="op-field" id="bitBWrap">
+            <span>B</span>
+            <input id="bitB" type="text" inputmode="numeric" placeholder="0" autocomplete="off">
+          </label>
+        </div>
+        <div class="op-bitwidth">
+          <span>연산 비트 폭</span>
+          <div class="pill-group" role="radiogroup" aria-label="비트 연산 비트 폭">
+            <button type="button" class="pill sm" data-opbitwidth="8" aria-pressed="true">8</button>
+            <button type="button" class="pill sm" data-opbitwidth="16" aria-pressed="false">16</button>
+            <button type="button" class="pill sm" data-opbitwidth="32" aria-pressed="false">32</button>
+            <button type="button" class="pill sm" data-opbitwidth="64" aria-pressed="false">64</button>
+          </div>
+        </div>
+        <div class="result-block" id="bitResultBlock">
+          <div class="result-line"><span class="result-tag">DEC</span><output id="bitResDec">0</output></div>
+          <div class="result-line"><span class="result-tag">BIN</span><output id="bitResBin">0</output></div>
+          <div class="result-line"><span class="result-tag">HEX</span><output id="bitResHex">0</output></div>
+        </div>
+        <p class="field-error" id="bitError" role="alert"></p>
+      </div>
+
+      <div class="tool-card">
+        <h2>진법 덧셈 · 뺄셈</h2>
+        <p class="card-sub">각기 다른 진법의 두 수를 더하거나 뺄 수 있습니다.</p>
+        <div class="op-row">
+          <label class="op-field">
+            <span>A</span>
+            <input id="calcA" type="text" placeholder="0" autocomplete="off">
+          </label>
+          <label class="op-field op-select sm-select">
+            <span>진법 A</span>
+            <select id="calcABase">
+              <option value="2">2진수</option>
+              <option value="8">8진수</option>
+              <option value="10" selected>10진수</option>
+              <option value="16">16진수</option>
+            </select>
+          </label>
+        </div>
+        <div class="op-row">
+          <div class="pill-group" role="radiogroup" aria-label="연산자 선택">
+            <button type="button" class="pill sm" data-calcop="add" aria-pressed="true">+ 더하기</button>
+            <button type="button" class="pill sm" data-calcop="sub" aria-pressed="false">− 빼기</button>
+          </div>
+        </div>
+        <div class="op-row">
+          <label class="op-field">
+            <span>B</span>
+            <input id="calcB" type="text" placeholder="0" autocomplete="off">
+          </label>
+          <label class="op-field op-select sm-select">
+            <span>진법 B</span>
+            <select id="calcBBase">
+              <option value="2">2진수</option>
+              <option value="8">8진수</option>
+              <option value="10" selected>10진수</option>
+              <option value="16">16진수</option>
+            </select>
+          </label>
+        </div>
+        <div class="result-block" id="calcResultBlock">
+          <div class="result-line"><span class="result-tag">BIN</span><output id="calcResBin">0</output></div>
+          <div class="result-line"><span class="result-tag">OCT</span><output id="calcResOct">0</output></div>
+          <div class="result-line"><span class="result-tag">DEC</span><output id="calcResDec">0</output></div>
+          <div class="result-line"><span class="result-tag">HEX</span><output id="calcResHex">0</output></div>
+        </div>
+        <p class="field-error" id="calcError" role="alert"></p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HISTORY -->
+  <section id="history" class="panel-section">
+    <div class="wrap">
+      <div class="history-head">
+        <h2>변환 기록</h2>
+        <button id="clearHistory" class="ghost-btn" type="button">기록 지우기</button>
+      </div>
+      <p class="card-sub">최근 변환한 값이 자동으로 저장됩니다 (이 브라우저에만 보관, 최대 20개).</p>
+      <ol id="historyList" class="history-list" aria-live="polite"></ol>
+      <p id="historyEmpty" class="history-empty">아직 기록이 없습니다. 위에서 값을 변환해 보세요.</p>
+    </div>
+  </section>
+
+  <!-- SEO / GUIDE CONTENT -->
+  <section id="guide" class="panel-section guide-section">
+    <div class="wrap prose">
+      <h2>진법(進法)이란 무엇인가요?</h2>
+      <p>진법은 숫자를 표기하는 규칙입니다. 우리가 일상에서 쓰는 <strong>10진수</strong>는 0부터 9까지 10개의 숫자로 자릿수를 표현하지만, 컴퓨터는 전기 신호의 On/Off 두 가지 상태만 다룰 수 있기 때문에 0과 1만 사용하는 <strong>2진수(binary)</strong>를 기본으로 동작합니다. 2진수는 자릿수가 빠르게 길어지는 단점이 있어, 이를 짧고 읽기 쉽게 묶어 표현하기 위해 <strong>8진수(octal)</strong>와 <strong>16진수(hexadecimal)</strong>가 함께 쓰입니다.</p>
+
+      <div class="guide-grid">
+        <article class="guide-card">
+          <h3>2진수 (Binary, Base-2)</h3>
+          <p>0과 1 두 가지 숫자만 사용합니다. 컴퓨터 하드웨어가 실제로 처리하는 가장 기본적인 표현 방식으로, 트랜지스터의 전류 유무를 그대로 대응시킬 수 있습니다.</p>
+        </article>
+        <article class="guide-card">
+          <h3>8진수 (Octal, Base-8)</h3>
+          <p>0부터 7까지 사용하며, 2진수 3자리를 정확히 한 자리로 묶을 수 있습니다. 유닉스/리눅스의 파일 권한 표기(예: 755)에서 지금도 흔히 볼 수 있습니다.</p>
+        </article>
+        <article class="guide-card">
+          <h3>10진수 (Decimal, Base-10)</h3>
+          <p>사람이 일상적으로 사용하는 진법입니다. 손가락이 10개라는 점에서 유래했다는 설이 널리 알려져 있습니다.</p>
+        </article>
+        <article class="guide-card">
+          <h3>16진수 (Hexadecimal, Base-16)</h3>
+          <p>0~9와 A~F를 사용하며, 2진수 4자리(1니블)를 정확히 한 자리로 묶습니다. 메모리 주소, 색상 코드(#FFAA00), 오류 코드 표기 등 개발 전반에서 널리 쓰입니다.</p>
+        </article>
+      </div>
+
+      <h2>변환 방법 요약</h2>
+      <ol class="guide-steps">
+        <li><strong>10진수 → 다른 진법:</strong> 목표 진법의 밑으로 반복해서 나누고, 나머지를 역순으로 나열합니다.</li>
+        <li><strong>다른 진법 → 10진수:</strong> 각 자릿값에 밑의 거듭제곱을 곱해 모두 더합니다.</li>
+        <li><strong>2진수 ↔ 8진수:</strong> 2진수를 오른쪽부터 3자리씩 묶어 8진수 한 자리로 변환합니다.</li>
+        <li><strong>2진수 ↔ 16진수:</strong> 2진수를 오른쪽부터 4자리씩 묶어 16진수 한 자리로 변환합니다.</li>
+      </ol>
+
+      <h2>자주 묻는 질문</h2>
+      <div class="faq">
+        <details>
+          <summary>2진수를 10진수로 어떻게 변환하나요?</summary>
+          <p>2진수의 각 자릿수에 오른쪽부터 2⁰, 2¹, 2²... 순서로 자릿값을 곱한 뒤 모두 더하면 10진수가 됩니다. 예를 들어 1010은 1×8 + 0×4 + 1×2 + 0×1 = 10 입니다.</p>
+        </details>
+        <details>
+          <summary>16진수는 왜 컴퓨터에서 많이 사용하나요?</summary>
+          <p>16진수 한 자리는 정확히 4비트를 표현할 수 있어 8비트, 16비트, 32비트 등 컴퓨터의 데이터 단위와 깔끔하게 맞아떨어집니다. 그래서 2진수보다 짧고 8진수보다 규칙적인 16진수가 널리 쓰입니다.</p>
+        </details>
+        <details>
+          <summary>2의 보수(Two's complement)란 무엇인가요?</summary>
+          <p>모든 비트를 반전(1의 보수)한 뒤 1을 더하면 그 수의 음수에 해당하는 2의 보수 표현이 됩니다. 덧셈 회로만으로 뺄셈까지 처리할 수 있어 하드웨어 설계가 단순해지는 장점이 있습니다.</p>
+        </details>
+        <details>
+          <summary>8진수는 요즘도 사용되나요?</summary>
+          <p>유닉스/리눅스 파일 권한(예: chmod 755)이나 일부 이스케이프 시퀀스 표기 등 제한된 영역에서 여전히 사용됩니다.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p>Radix Bench — 브라우저에서 동작하는 정적 진수 변환기. 입력값은 서버로 전송되지 않습니다.</p>
+    <p><a href="/privacy.html">개인정보처리방침</a> · <a href="/terms.html">이용약관</a></p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>강아지·고양이 사료량 계산기 | 하루 급여량 계산</title>
+<meta name="description" content="몸무게와 활동량을 입력하면 강아지, 고양이의 하루 적정 사료량을 계산해드려요. 성장기, 다이어트, 노령기별 급여량까지 확인하세요.">
+<meta name="robots" content="index, follow">
+<meta name="google-site-verification" content="여기에-구글서치콘솔-인증코드-붙여넣기">
+<meta name="naver-site-verification" content="여기에-네이버서치어드바이저-인증코드-붙여넣기">
+<link rel="canonical" href="https://syproject.co.kr/calculator/pet/feed.html">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="강아지·고양이 사료량 계산기 | 하루 급여량 계산">
+<meta property="og:description" content="몸무게와 활동량을 입력하면 강아지, 고양이의 하루 적정 사료량을 계산해드려요.">
+<meta property="og:url" content="https://syproject.co.kr/calculator/pet/feed.html">
+<meta property="og:image" content="https://syproject.co.kr/calculator/pet/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<!-- Google AdSense 자동광고 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6050400939455736" crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "강아지·고양이 사료량 계산기",
+  "url": "https://syproject.co.kr/calculator/pet/feed.html",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "description": "몸무게와 활동량 기반으로 반려동물의 하루 적정 사료량을 계산해주는 무료 계산기",
+  "inLanguage": "ko",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" }
+}
+</script>
+</head>
+<body data-sp="dog">
+
+<div class="paw paw--1">🐾</div>
+<div class="paw paw--2">🐾</div>
+<div class="paw paw--3">🐾</div>
+
+<div class="wrap">
+  <nav class="pagenav">
+    <a href="index.html">🎂 나이 계산기</a>
+    <a href="feed.html" class="active">🍚 사료량 계산기</a>
+  </nav>
+
+  <header>
+    <span class="eyebrow">반려동물 사료량 계산기</span>
+    <h1>우리 아이<br>하루 사료량은 <span>얼마나</span>?</h1>
+  </header>
+
+  <main class="card">
+    <div class="toggle">
+      <button type="button" class="active" data-sp="dog" onclick="setSpeciesFeed('dog')">🐶 강아지</button>
+      <button type="button" data-sp="cat" onclick="setSpeciesFeed('cat')">🐱 고양이</button>
+    </div>
+
+    <div class="field">
+      <label for="weight">몸무게</label>
+      <div class="input-group">
+        <input type="number" id="weight" min="0" step="0.1" placeholder="0" inputmode="decimal">
+        <span class="unit">kg</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>생애주기 / 활동량</label>
+      <div class="segmented grid">
+        <button type="button" class="active" data-stage="growth" onclick="setStage('growth')">성장기<br>(1세 미만)</button>
+        <button type="button" data-stage="diet" onclick="setStage('diet')">다이어트 중</button>
+        <button type="button" data-stage="low" onclick="setStage('low')">저활동 · 중성화</button>
+        <button type="button" data-stage="normal" onclick="setStage('normal')">보통 활동</button>
+        <button type="button" data-stage="active" onclick="setStage('active')">활동량 많음</button>
+        <button type="button" data-stage="senior" onclick="setStage('senior')">노령기</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="kcal">사료 열량</label>
+      <div class="input-group">
+        <input type="number" id="kcal" min="0" placeholder="350" inputmode="numeric">
+        <span class="unit">kcal/100g</span>
+      </div>
+      <span class="hint">사료 포장지의 대사에너지(ME) 표기를 참고하세요. 모르면 350 그대로 두어도 괜찮아요.</span>
+    </div>
+
+    <button class="calc-btn" onclick="calculateFeed()">사료량 계산하기</button>
+
+    <div class="result-wrap" id="resultWrap">
+      <div class="tag-ring"></div>
+      <div class="tag">
+        <span class="icon" id="resultIcon">🐶</span>
+        <div class="big-number" id="resultNumber">0g</div>
+        <div class="unit">하루 급여량</div>
+        <div class="sub" id="resultSub">1일 필요 칼로리 기준</div>
+      </div>
+    </div>
+
+    <div class="desc" id="resultDesc" style="display:none;"></div>
+  </main>
+
+  <footer>
+    체중·활동량·건강상태에 따라 적정 급여량은 달라질 수 있어요.<br>
+    처음에는 이 값을 기준으로 시작하고, 체중 변화를 보며 조절해주세요 🐾<br>
+    <a href="/privacy.html">개인정보처리방침</a> · <a href="/terms.html">이용약관</a>
+  </footer>
+</div>
+
+<script src="feed.js"></script>
+</body>
+</html>
