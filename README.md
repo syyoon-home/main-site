@@ -15,3 +15,7 @@
 
 /fortune/name-storkes 이름 획수 궁합<br>
 /fortune/petal        꽃잎 점<br>
+
+
+> Copyright (c) 2026 syproject. All rights reserved.
+> 저작권자 외 타인의 복제/재배포/수정 일체 금지
