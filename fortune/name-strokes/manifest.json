@@ -1,0 +1,26 @@
+{
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "lang": "ko",
+  "name": "이름 획수 궁합 | SY Project",
+  "short_name": "이름궁합",
+  "description": "전통 방식 이름 획수 궁합 계산기",
+  "background_color": "#f3eedb",
+  "theme_color": "#b8412f",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

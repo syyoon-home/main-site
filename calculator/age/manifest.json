@@ -1,0 +1,26 @@
+{
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "lang": "ko",
+  "name": "만나이 계산기 | SY Project",
+  "short_name": "만나이계산기",
+  "description": "만나이·한국나이·띠·별자리를 계산하는 무료 웹 도구",
+  "background_color": "#F4EFDE",
+  "theme_color": "#1B2A4A",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

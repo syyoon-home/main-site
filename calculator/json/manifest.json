@@ -1,0 +1,26 @@
+{
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "lang": "ko",
+  "name": "JSON ⇄ CSV / YAML 변환기 | SY Project",
+  "short_name": "JSON변환기",
+  "description": "JSON, CSV, YAML을 실시간으로 상호 변환하는 무료 온라인 도구",
+  "background_color": "#EEF2EC",
+  "theme_color": "#16231C",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

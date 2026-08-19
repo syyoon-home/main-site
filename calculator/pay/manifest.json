@@ -1,0 +1,26 @@
+{
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "lang": "ko",
+  "name": "퇴사일 계산기 | SY Project",
+  "short_name": "퇴사일계산기",
+  "description": "목표 저축액 기반 퇴사 가능일, 실수령액 계산 도구",
+  "background_color": "#EEF2ED",
+  "theme_color": "#142136",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

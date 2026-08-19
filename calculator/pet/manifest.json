@@ -1,0 +1,26 @@
+{
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "lang": "ko",
+  "name": "반려동물 나이 계산기 | SY Project",
+  "short_name": "펫나이계산기",
+  "description": "강아지·고양이 나이 환산, 사료량 계산 도구",
+  "background_color": "#FFF3E2",
+  "theme_color": "#FF9662",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

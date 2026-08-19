@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JSON ⇄ CSV / YAML 변환기 - 무료 온라인 데이터 포맷 변환 도구 | SY Project</title>
+<meta name="description" content="JSON, CSV, YAML을 실시간으로 상호 변환하는 무료 온라인 도구. 중첩 객체 자동 평탄화, 들여쓰기 깊이 시각화, 복사·다운로드까지 지원하며 입력값은 서버로 전송되지 않습니다.">
+<meta name="keywords" content="json csv 변환, json yaml 변환, csv json 변환기, yaml 변환기, json converter, csv converter, 데이터 포맷 변환, json flatten, 무료 변환기">
+<meta name="author" content="SY Project">
+<link rel="canonical" href="https://syproject.co.kr/calculator/json/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="JSON ⇄ CSV / YAML 변환기 - 무료 온라인 데이터 포맷 변환 도구">
+<meta property="og:description" content="JSON, CSV, YAML을 실시간으로 상호 변환하는 무료 온라인 도구. 브라우저 안에서만 동작하며 데이터는 서버로 전송되지 않습니다.">
+<meta property="og:url" content="https://syproject.co.kr/calculator/json/">
+<meta property="og:locale" content="ko_KR">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JSON ⇄ CSV / YAML 변환기">
+<meta name="twitter:description" content="JSON, CSV, YAML을 실시간으로 상호 변환하는 무료 온라인 도구.">
+
+<!-- Favicon (inline SVG) -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%2316231C%22/><text x=%2250%22 y=%2264%22 font-family=%22monospace%22 font-weight=%22700%22 font-size=%2240%22 fill=%22%23C7692F%22 text-anchor=%22middle%22>{ }</text></svg>">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#16231C">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<!-- Google AdSense 자동 광고 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6050400939455736" crossorigin="anonymous"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6050400939455736",
+    enable_page_level_ads: true
+  });
+</script>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <p class="brand-eyebrow">정적 페이지 · 서버 전송 없음 · 브라우저 내에서 변환</p>
+      <h1><span class="json-hl">JSON</span><span class="sep">⇄</span><span class="csv-hl">CSV</span><span class="sep">⇄</span><span class="yaml-hl">YAML</span></h1>
+    </div>
+  </header>
+
+  <div class="switchyard">
+    <div class="format-group" id="sourceGroup">
+      <span class="glabel">원본</span>
+      <button class="pill active" data-fmt="json">JSON</button>
+      <button class="pill" data-fmt="yaml">YAML</button>
+      <button class="pill" data-fmt="csv">CSV</button>
+    </div>
+
+    <div class="track">
+      <svg viewBox="0 0 46 14"><line x1="0" y1="7" x2="46" y2="7" stroke="#B9C4B4" stroke-width="2" stroke-dasharray="4 4"/></svg>
+      <button class="swap-btn" id="swapBtn" title="원본/대상 형식 바꾸기">⇄</button>
+      <svg viewBox="0 0 46 14"><line x1="0" y1="7" x2="46" y2="7" stroke="#B9C4B4" stroke-width="2" stroke-dasharray="4 4"/></svg>
+    </div>
+
+    <div class="format-group" id="targetGroup">
+      <span class="glabel">대상</span>
+      <button class="pill" data-fmt="json">JSON</button>
+      <button class="pill" data-fmt="yaml">YAML</button>
+      <button class="pill active" data-fmt="csv">CSV</button>
+    </div>
+  </div>
+
+  <main class="editors">
+    <section class="panel source" data-fmt="json">
+      <div class="panel-head">
+        <span class="tag" id="sourceTag">JSON</span>
+        <div class="panel-actions">
+          <button class="mini-btn" id="sampleBtn">샘플</button>
+          <button class="mini-btn" id="clearBtn">지우기</button>
+        </div>
+      </div>
+      <div class="editor-wrap">
+        <div class="gutter" id="gutterIn"></div>
+        <textarea id="input" spellcheck="false" placeholder="여기에 JSON, CSV 또는 YAML을 붙여넣으세요…"></textarea>
+      </div>
+      <div class="status" id="statusIn">0줄</div>
+    </section>
+
+    <div class="connector">
+      <button id="convertBtn">변환 →</button>
+    </div>
+
+    <section class="panel output" data-fmt="csv">
+      <div class="panel-head">
+        <span class="tag" id="targetTag">CSV</span>
+        <div class="panel-actions">
+          <button class="mini-btn" id="copyBtn">복사</button>
+          <button class="mini-btn" id="downloadBtn">다운로드</button>
+        </div>
+      </div>
+      <div class="editor-wrap">
+        <div class="gutter" id="gutterOut"></div>
+        <textarea id="output" spellcheck="false" readonly placeholder="변환 결과가 여기에 표시됩니다"></textarea>
+      </div>
+      <div class="status" id="statusOut">대기 중</div>
+    </section>
+  </main>
+
+  <footer>
+    변환 · 압축 해제 모두 브라우저 안에서만 실행되며 데이터는 어디로도 전송되지 않습니다.
+    <div class="legend">
+      <span><span class="dot json"></span>JSON — 중첩 깊이</span>
+      <span><span class="dot yaml"></span>YAML — 들여쓰기 깊이</span>
+      <span><span class="dot csv"></span>CSV — 헤더 / 행</span>
+    </div>
+    <div class="legal-links">
+      <a href="/">홈</a> · <a href="/privacy.html">개인정보처리방침</a> · <a href="/terms.html">이용약관</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("service-worker.js").catch(() => {});
+    });
+  }
+</script>
+<script src="/pwa/install-prompt.js" defer></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

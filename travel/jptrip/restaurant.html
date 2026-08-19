@@ -33,10 +33,11 @@
   ]
 }
 </script>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#C43D2C">
+<link rel="apple-touch-icon" href="icon-192.png">
 </head>
 <body>
-
-<div style="padding:14px 20px 0; font-family:sans-serif;"><a href="/" style="font-size:12.5px; color:inherit; opacity:0.6; text-decoration:none; border-bottom:1px dashed currentColor;">← SY Project 홈으로</a></div>
 
 <header class="site-header">
   <a class="brand" href="index.html">
@@ -339,10 +340,19 @@
 
 <footer class="site-footer">
   <p>표기된 한글 발음은 실제 일본어 발음과 다를 수 있는 참고용 표기입니다.</p>
-  <p>© syproject.co.kr/travel/jptrip — 여행지에서 바로 꺼내 쓰는 일본어 · <a href="/privacy.html">개인정보처리방침</a> · <a href="/terms.html">이용약관</a></p>
+  <p>© syproject.co.kr/travel/jptrip — 여행지에서 바로 꺼내 쓰는 일본어 · <a href="/">홈</a> · <a href="/privacy.html">개인정보처리방침</a> · <a href="/terms.html">이용약관</a></p>
 </footer>
 
 <script src="data.js"></script>
 <script src="script.js"></script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("service-worker.js").catch(() => {});
+    });
+  }
+</script>
+<script src="/pwa/install-prompt.js" defer></script>
 </body>
 </html>

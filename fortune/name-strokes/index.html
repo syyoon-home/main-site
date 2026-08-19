@@ -36,11 +36,12 @@
     enable_page_level_ads: true
   });
 </script>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#b8412f">
+<link rel="apple-touch-icon" href="icon-192.png">
 </head>
 <body>
 <div class="page">
-
-  <div class="home-link"><a href="/">← SY Project 홈으로</a></div>
 
   <h1>이름 획수 궁합</h1>
   <div class="sub">두 사람의 이름을 초성·중성·종성 획수로 쪼갠 뒤, 옛날 방식 그대로 숫자를 한 줄씩 줄여가며 궁합을 계산해요. (재미로만 봐주세요 🙂)</div>
@@ -93,5 +94,14 @@
 </div>
 
 <script src="script.js"></script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("service-worker.js").catch(() => {});
+    });
+  }
+</script>
+<script src="/pwa/install-prompt.js" defer></script>
 </body>
 </html>

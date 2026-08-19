@@ -1,0 +1,26 @@
+{
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "lang": "ko",
+  "name": "진수 변환기 - Radix Bench | SY Project",
+  "short_name": "진수변환기",
+  "description": "2/8/10/16진수 실시간 변환, 비트 연산 도구",
+  "background_color": "#0E1512",
+  "theme_color": "#0E1512",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
