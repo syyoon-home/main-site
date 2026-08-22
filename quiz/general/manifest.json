@@ -1,0 +1,26 @@
+{
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "lang": "ko",
+  "name": "상식 퀴즈 | SY Project",
+  "short_name": "상식퀴즈",
+  "description": "역사·과학·문화·지리·스포츠를 넘나드는 무작위 10문제 4지선다 상식 퀴즈",
+  "background_color": "#12213D",
+  "theme_color": "#12213D",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
