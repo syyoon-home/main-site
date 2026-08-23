@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>상식 퀴즈 - 역사·과학·문화·지리·스포츠 무료 퀴즈 게임 | SY Project</title>
+<meta name="description" content="역사, 과학, 문화, 지리, 스포츠를 넘나드는 무작위 10문제 4지선다 상식 퀴즈. 회원가입 없이 바로 시작할 수 있는 무료 퀴즈 게임으로 등급별 결과까지 확인할 수 있습니다.">
+<meta name="keywords" content="상식퀴즈, 상식 게임, 퀴즈 게임 무료, 4지선다 퀴즈, 일반상식, 온라인 퀴즈, 역사퀴즈, 과학퀴즈, 심심풀이 퀴즈">
+<meta name="author" content="SY Project">
+<link rel="canonical" href="https://syproject.co.kr/quiz/general/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="상식 퀴즈 - 역사·과학·문화·지리·스포츠 무료 퀴즈 게임">
+<meta property="og:description" content="무작위 10문제 4지선다 상식 퀴즈. 회원가입 없이 바로 시작하고 등급별 결과까지 확인하세요.">
+<meta property="og:url" content="https://syproject.co.kr/quiz/general/">
+<meta property="og:locale" content="ko_KR">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="상식 퀴즈 - 무료 퀴즈 게임">
+<meta name="twitter:description" content="역사·과학·문화·지리·스포츠 무작위 10문제 4지선다 퀴즈.">
+
+<!-- Favicon (inline SVG) -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%2312213D%22/><text x=%2250%22 y=%2268%22 font-family=%22sans-serif%22 font-weight=%22800%22 font-size=%2258%22 fill=%22%23E3B23C%22 text-anchor=%22middle%22>?</text></svg>">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#12213D">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Bricolage+Grotesque:wght@700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="quiz.css" />
+
+<!-- Google AdSense 자동 광고 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6050400939455736" crossorigin="anonymous"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6050400939455736",
+    enable_page_level_ads: true
+  });
+</script>
+</head>
+<body>
+  <div class="page">
+    <div class="wrap">
+      <div class="marquee">
+        <span class="dot"></span>
+        <span class="marquee-text">General Knowledge Show</span>
+        <span class="dot"></span>
+      </div>
+
+      <div class="panel">
+
+        <!-- START SCREEN -->
+        <section id="screen-start" class="screen">
+          <h1 class="title">상식 퀴즈</h1>
+          <p class="sub">
+            역사·과학·문화·지리·스포츠를 넘나드는<br />
+            무작위 <span id="round-size-label">10</span>문제, 4지선다에 도전해보세요.
+          </p>
+          <button id="btn-start" class="btn-primary">퀴즈 시작</button>
+        </section>
+
+        <!-- PLAYING SCREEN -->
+        <section id="screen-playing" class="screen" hidden>
+          <div class="row-between">
+            <span id="cat-badge" class="badge">카테고리</span>
+            <span id="q-counter" class="counter">Q 1 / 10</span>
+          </div>
+
+          <div class="progress-track">
+            <div id="progress-fill" class="progress-fill"></div>
+          </div>
+
+          <h2 id="question-text" class="question"></h2>
+
+          <div id="choices" class="choices"></div>
+
+          <div id="explanation-box" class="explanation" hidden>
+            <span id="explanation-verdict" class="verdict"></span>
+            <span id="explanation-text"></span>
+          </div>
+
+          <button id="btn-next" class="btn-primary" hidden>다음 문제</button>
+        </section>
+
+        <!-- END SCREEN -->
+        <section id="screen-end" class="screen" hidden>
+          <p class="result-label">Result</p>
+          <div class="score">
+            <span id="score-value">0</span><span id="score-total" class="score-total">/10</span>
+          </div>
+          <p id="grade-title" class="grade-title"></p>
+          <p id="grade-desc" class="grade-desc"></p>
+
+          <div class="grade-table">
+            <p class="grade-table-label">등급 구간</p>
+            <div id="grade-rows"></div>
+          </div>
+
+          <button id="btn-restart" class="btn-primary">다시 도전하기</button>
+        </section>
+
+      </div>
+    </div>
+
+    <footer class="site-footer-note">
+      모든 진행 상황은 브라우저 안에서만 저장되며, 서버로 전송되지 않습니다.
+      <div class="legal-links">
+        <a href="/">홈</a> · <a href="/privacy.html">개인정보처리방침</a> · <a href="/terms.html">이용약관</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="quiz.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("service-worker.js").catch(() => {});
+      });
+    }
+  </script>
+  <script src="/pwa/install-prompt.js" defer></script>
+</body>
+</html>

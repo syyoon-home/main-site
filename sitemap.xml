@@ -162,4 +162,18 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- 털어버리기 -->
+  <url>
+    <loc>https://syproject.co.kr/mind/release/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 상식 퀴즈 -->
+  <url>
+    <loc>https://syproject.co.kr/quiz/general/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
 </urlset>

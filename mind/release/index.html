@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>털어버리기 - 마음에 담아둔 말을 적고 놓아보내는 감정 정리 도구 | SY Project</title>
+<meta name="description" content="마음에 담아둔 말을 적고, 찢거나 태우거나 구겨서 놓아보내는 무료 감정 정리 도구입니다. 적은 내용은 저장되지 않고 화면 안에서만 사라지며, 서버로 전송되지 않습니다.">
+<meta name="keywords" content="감정 정리, 마음 비우기, 스트레스 해소, 글쓰기 치유, 감정일기, 화풀이, 마음 정리 도구, 무료 힐링 도구">
+<meta name="author" content="SY Project">
+<link rel="canonical" href="https://syproject.co.kr/mind/release/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="털어버리기 - 마음에 담아둔 말을 적고 놓아보내는 감정 정리 도구">
+<meta property="og:description" content="마음에 담아둔 말을 적고, 찢거나 태우거나 구겨서 놓아보내는 무료 감정 정리 도구. 적은 내용은 저장되지 않습니다.">
+<meta property="og:url" content="https://syproject.co.kr/mind/release/">
+<meta property="og:locale" content="ko_KR">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="털어버리기 - 감정 정리 도구">
+<meta name="twitter:description" content="마음에 담아둔 말을 적고 놓아보내는 무료 감정 정리 도구.">
+
+<!-- Favicon (inline SVG) -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%2314181f%22/><circle cx=%2250%22 cy=%2250%22 r=%2220%22 fill=%22none%22 stroke=%22%23e8783d%22 stroke-width=%228%22/><circle cx=%2250%22 cy=%2250%22 r=%228%22 fill=%22%23e8783d%22/></svg>">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#14181f">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Noto+Serif+KR:wght@500;700&family=IBM+Plex+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<!-- Google AdSense 자동 광고 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6050400939455736" crossorigin="anonymous"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6050400939455736",
+    enable_page_level_ads: true
+  });
+</script>
+</head>
+<body>
+<div class="scene">
+  <header>
+    <h1>털어버리기</h1>
+    <p class="sub">마음에 담아둔 말을 적고, 찢거나 태우거나 구겨서 놓아보세요.</p>
+  </header>
+
+  <div class="paper-wrap" id="paperWrap">
+    <div class="burn-glow" id="burnGlow"></div>
+    <div class="paper" id="paper">
+      <button class="clear-btn" id="clearBtn" type="button" aria-label="지우기">&#10005;</button>
+      <textarea id="textInput" placeholder="여기에 적어보세요..." maxlength="600"></textarea>
+    </div>
+    <canvas class="burn-canvas" id="burnCanvas"></canvas>
+    <canvas class="burn-canvas" id="flameCanvas"></canvas>
+  </div>
+
+  <div class="aftermath" id="aftermath">
+    <p class="msg" id="aftermathMsg">이제 그 마음은 여기 없어요.</p>
+    <p class="sub2">필요할 때 언제든 다시 써보세요.</p>
+    <button class="reset-btn" id="resetBtn">다시 쓰기</button>
+  </div>
+
+  <div class="actions" id="actions">
+    <button class="act" data-action="tear">찢기</button>
+    <button class="act" data-action="burn">태우기</button>
+    <button class="act" data-action="crumple">구겨서 버리기</button>
+  </div>
+  <div class="hint" id="hint">먼저 마음속 이야기를 적어보세요</div>
+
+  <footer class="site-footer-note">
+    적은 내용은 저장되지 않고, 서버로 전송되지도 않아요. 화면을 벗어나면 그대로 사라집니다.
+    <div class="legal-links">
+      <a href="/">홈</a> · <a href="/privacy.html">개인정보처리방침</a> · <a href="/terms.html">이용약관</a>
+    </div>
+  </footer>
+</div>
+
+<script src="script.js"></script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("service-worker.js").catch(() => {});
+    });
+  }
+</script>
+<script src="/pwa/install-prompt.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "lang": "ko",
+  "name": "털어버리기 | SY Project",
+  "short_name": "털어버리기",
+  "description": "마음에 담아둔 말을 적고, 찢거나 태우거나 구겨서 놓아보내는 감정 정리 도구",
+  "background_color": "#14181f",
+  "theme_color": "#14181f",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
