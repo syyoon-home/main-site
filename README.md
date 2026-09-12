@@ -7,6 +7,7 @@
 /calculator/json   json-csv-yaml 변환기<br>
 /calculator/uuid   랜덤 문자열 생성기<br>
 /calculator/color  컬러 코드 변환기 및 팔레트<br>
+/calculator/text   글자 검토대 - 글자 수 세기, 두 글 비교<br>
 /travel/jptrip     자주 사용하는 일본어 문장 정리<br>
 /fortune/name-strokes 이름 획수 궁합<br>
 /fortune/petal        꽃잎 점<br>

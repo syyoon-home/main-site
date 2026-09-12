@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>글자 검토대 - 글자 수 세기, 두 글 비교(TXT·DOCX) | SY Project</title>
+<meta name="description" content="글자 수를 세고 목표 글자수 달성률을 확인하며, 두 글을 나란히 비교해 달라진 부분을 표시하는 무료 글쓰기 도구. TXT, DOCX 파일 불러오기를 지원하며 서버로 전송되지 않습니다.">
+<meta name="keywords" content="글자수세기, 글자 수 세는 곳, 텍스트 비교, 글 비교 도구, 원고지 글자수, 자소서 글자수, docx 글자수, 두 글 비교, 수정 전후 비교">
+<meta name="author" content="SY Project">
+<link rel="canonical" href="https://syproject.co.kr/calculator/text/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="글자 검토대 - 글자 수 세기, 두 글 비교(TXT·DOCX)">
+<meta property="og:description" content="글자 수를 세고 목표 글자수 달성률을 확인하며, 두 글을 나란히 비교해 달라진 부분을 표시하는 무료 글쓰기 도구.">
+<meta property="og:url" content="https://syproject.co.kr/calculator/text/">
+<meta property="og:locale" content="ko_KR">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="글자 검토대 - 글자 수 세기, 두 글 비교">
+<meta name="twitter:description" content="글자 수를 세고 두 글을 나란히 비교하는 무료 글쓰기 도구.">
+
+<!-- Favicon (inline SVG) -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%23FCFBF7%22/><circle cx=%2250%22 cy=%2250%22 r=%2226%22 fill=%22none%22 stroke=%22%23D6392C%22 stroke-width=%228%22/><text x=%2250%22 y=%2260%22 font-family=%22serif%22 font-weight=%22900%22 font-size=%2222%22 fill=%22%23D6392C%22 text-anchor=%22middle%22>校</text></svg>">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1B2A4A">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/5.1.0/diff.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<link rel="stylesheet" href="style.css">
+
+<!-- Google AdSense 자동 광고 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6050400939455736" crossorigin="anonymous"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6050400939455736",
+    enable_page_level_ads: true
+  });
+</script>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <div class="stamp">校正</div>
+      <div>
+        <h1>글자 검토대</h1>
+        <p class="sub">글자 수를 세고, 두 글을 나란히 비교해보세요.</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="panels" id="panels">
+    <div class="panel show" id="panelA">
+      <div class="panel-label">
+        <span>글 A</span>
+        <div class="label-actions">
+          <button class="mini-btn" id="uploadA" title="TXT, DOCX 지원">파일 불러오기</button>
+          <input type="file" id="fileA" accept=".txt,.docx" style="display:none;">
+          <button class="mini-btn" id="copyA">복사</button>
+          <button class="mini-btn" id="resetA">초기화</button>
+        </div>
+      </div>
+      <textarea id="textA" placeholder="여기에 글을 붙여넣거나 입력하세요."></textarea>
+      <div class="stat-row" id="statsA"></div>
+      <div class="goal-row">
+        목표 글자수 <input type="number" id="goalA" min="0" placeholder="예: 500">
+        <button class="compare-toggle" id="compareToggle" style="margin-left:auto;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v18M16 3v18M3 8l5-5 5 5M21 16l-5 5-5-5"/></svg>
+          <span id="compareLabel">비교할 글 추가하기</span>
+        </button>
+      </div>
+      <div class="goal-bar-wrap" id="goalWrapA">
+        <div class="goal-bar"><div class="goal-fill" id="goalFillA"></div></div>
+        <div class="goal-text" id="goalTextA"></div>
+      </div>
+    </div>
+    <div class="panel" id="panelB">
+      <div class="panel-label">
+        <span>글 B</span>
+        <div class="label-actions">
+          <button class="mini-btn" id="uploadB" title="TXT, DOCX 지원">파일 불러오기</button>
+          <input type="file" id="fileB" accept=".txt,.docx" style="display:none;">
+          <button class="mini-btn" id="copyB">복사</button>
+          <button class="mini-btn" id="resetB">초기화</button>
+        </div>
+      </div>
+      <textarea id="textB" placeholder="비교할 글을 여기에 붙여넣으세요."></textarea>
+      <div class="stat-row" id="statsB"></div>
+      <div class="goal-row">
+        목표 글자수 <input type="number" id="goalB" min="0" placeholder="예: 500">
+      </div>
+      <div class="goal-bar-wrap" id="goalWrapB">
+        <div class="goal-bar"><div class="goal-fill" id="goalFillB"></div></div>
+        <div class="goal-text" id="goalTextB"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-primary" id="diffBtn" style="display:none;">두 글 비교하기</button>
+  </div>
+
+  <div class="result" id="diffResult">
+    <div class="result-head">
+      <div class="result-title">비교 결과</div>
+    </div>
+    <div class="diff-legend">
+      <span><i class="dot del"></i> A에만 있음</span>
+      <span><i class="dot add"></i> B에만 있음</span>
+    </div>
+    <div class="diff-view" id="diffBody"></div>
+    <p class="diff-note">빨간 표시는 A에만 있던 내용, 초록 표시는 B에서 새로 추가된 내용입니다.</p>
+  </div>
+
+  <section class="sy-info">
+    <h2>글자 수는 어떤 기준으로 세나요</h2>
+    <p>자소서, 논술, 원고지 작성처럼 글자수 제한이 있는 글쓰기에서는 '공백 포함'과 '공백 제외' 기준이 다르게 요구되는 경우가 많습니다. 이 도구는 두 기준을 동시에 보여주고, 목표 글자수를 입력하면 달성률을 진행 막대로 확인할 수 있습니다. 두 글 비교 기능은 jsdiff 라이브러리를 이용해 문자 단위로 차이를 계산하며, A에만 있던 내용은 빨간색, B에서 새로 추가된 내용은 초록색으로 표시합니다.</p>
+    <div class="sy-faq">
+      <details>
+        <summary>공백 포함/제외 기준은 어떻게 다른가요?</summary>
+        <p>공백 포함은 띄어쓰기와 줄바꿈까지 모두 글자로 세는 방식이고, 공백 제외는 실제 문자만 셉니다. 자기소개서는 보통 공백 포함 기준을, 원고지 매수 계산은 공백 제외 기준을 요구하는 경우가 많아 반드시 요강을 확인하는 게 좋습니다.</p>
+      </details>
+      <details>
+        <summary>DOCX 파일을 불러오면 서식도 유지되나요?</summary>
+        <p>mammoth 라이브러리로 문서의 텍스트 내용만 추출해서 불러오며, 글꼴이나 표 같은 서식은 반영되지 않습니다. 글자 수 확인과 텍스트 비교 목적에 맞춰 순수 텍스트만 가져옵니다.</p>
+      </details>
+      <details>
+        <summary>수정 전후 비교는 어떤 상황에 유용한가요?</summary>
+        <p>퇴고 전후 자기소개서, 계약서 수정본, 원고 교정본처럼 두 버전의 차이를 한눈에 확인하고 싶을 때 유용합니다. 어디가 삭제되고 어디가 새로 추가됐는지 색상으로 바로 구분됩니다.</p>
+      </details>
+    </div>
+  </section>
+
+  <footer class="site-footer-note">
+    입력한 글은 서버로 전송되지 않고 브라우저 안에서만 처리됩니다.
+    <div class="legal-links">
+      <a href="/">홈</a> · <a href="/privacy.html">개인정보처리방침</a> · <a href="/terms.html">이용약관</a>
+    </div>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("service-worker.js").catch(() => {});
+    });
+  }
+</script>
+<script src="/pwa/install-prompt.js" defer></script>
+</body>
+</html>
