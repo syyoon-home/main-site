@@ -50,20 +50,14 @@
   /* ---------- ruler strip ---------- */
   .ruler{
     height:28px;
-    display:flex;
-    align-items:flex-end;
-    padding:0 24px;
-    gap:7px;
-    overflow:hidden;
     border-bottom:1px solid var(--line);
+    background-image:
+      repeating-linear-gradient(90deg, var(--text-faint) 0 1px, transparent 1px 8px),
+      repeating-linear-gradient(90deg, var(--amber) 0 1px, transparent 1px 40px);
+    background-position: 24px bottom, 24px bottom;
+    background-repeat: repeat-x;
+    background-size: auto 7px, auto 14px;
   }
-  .ruler span{
-    width:1px;
-    background:var(--text-faint);
-    display:block;
-  }
-  .ruler span:nth-child(5n+1){ height:14px; background:var(--amber); opacity:0.7;}
-  .ruler span:not(:nth-child(5n+1)){ height:7px; }
 
   /* ---------- shell ---------- */
   .shell{ max-width:1040px; margin:0 auto; padding:0 24px; }
@@ -246,9 +240,7 @@
 </head>
 <body>
 
-<div class="ruler mono" aria-hidden="true">
-  <script>document.write(Array.from({length:60}).map(()=> '<span></span>').join(''))</script>
-</div>
+<div class="ruler" aria-hidden="true"></div>
 
 <div class="shell">
   <header>
