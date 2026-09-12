@@ -1,0 +1,26 @@
+{
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "lang": "ko",
+  "name": "글자 검토대 | SY Project",
+  "short_name": "글자검토대",
+  "description": "글자 수를 세고, 두 글을 나란히 비교하는 무료 글쓰기 도구",
+  "background_color": "#FCFBF7",
+  "theme_color": "#1B2A4A",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

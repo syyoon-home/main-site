@@ -151,6 +151,25 @@
     <div class="empty-state" id="emptyState">생성 버튼을 누르면 여기에 결과가 쌓입니다</div>
   </div>
 
+  <section class="sy-info">
+    <h2>UUID v4와 v7은 어떻게 다른가요</h2>
+    <p>UUID는 전 세계에서 중복될 확률이 사실상 0에 가까운 고유 식별자입니다. v4는 완전히 무작위한 값으로 생성되어 순서 예측이 불가능하고, v7은 타임스탬프를 앞부분에 포함해 시간순 정렬이 가능하면서도 고유성은 유지합니다. 데이터베이스 기본키처럼 정렬이 중요한 경우 v7이, 예측 불가능성이 중요한 보안 토큰 등에는 v4가 더 적합합니다. 이 도구는 브라우저 내장 `crypto.getRandomValues`로 값을 생성해 예측 불가능한 진짜 난수를 사용합니다.</p>
+    <div class="sy-faq">
+      <details>
+        <summary>Math.random()과 뭐가 다른가요?</summary>
+        <p>Math.random()은 예측 가능한 의사난수 생성기(PRNG)라 보안 용도로는 부적합합니다. crypto.getRandomValues는 운영체제 수준의 암호학적으로 안전한 난수 생성기(CSPRNG)를 사용해 토큰, 비밀번호, ID 생성 같은 보안이 중요한 곳에 적합합니다.</p>
+      </details>
+      <details>
+        <summary>생성된 값이 서버에 저장되나요?</summary>
+        <p>아니요. 모든 생성은 브라우저 안에서만 이루어지고 어떤 값도 서버로 전송되거나 로그에 남지 않습니다.</p>
+      </details>
+      <details>
+        <summary>HEX 키는 어디에 쓰이나요?</summary>
+        <p>API 시크릿 키, 세션 토큰, 암호화 키(AES 등)의 초기값으로 흔히 사용됩니다. 길이는 용도에 맞게(128비트, 256비트 등) 조절해서 사용하면 됩니다.</p>
+      </details>
+    </div>
+  </section>
+
   <footer>
     모든 생성은 브라우저 내에서만 이루어지며, 어떤 값도 서버로 전송되지 않습니다.
     <div class="legal-links">

@@ -403,3 +403,17 @@ body.light .site-footer { color: var(--ink-soft); }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* ---- SY Project 안내/FAQ 섹션 ---- */
+.sy-info{ margin-top:36px; padding-top:24px; border-top:1px solid var(--line); max-width:720px; margin-left:auto; margin-right:auto; }
+.sy-info h2{ font-size:17px; color:var(--paper); margin-bottom:10px; }
+.sy-info > p{ font-size:13.5px; line-height:1.75; color:var(--paper-soft); margin-bottom:16px; }
+.sy-faq details{ border-top:1px solid var(--line); padding:12px 0; }
+.sy-faq summary{ cursor:pointer; font-weight:600; font-size:13.5px; color:var(--paper); list-style:none; }
+.sy-faq summary::-webkit-details-marker{ display:none; }
+.sy-faq summary::before{ content:'旅 '; color:var(--gold); }
+.sy-faq details p{ margin-top:8px; font-size:13px; color:var(--paper-soft); line-height:1.7; }
+body.light .sy-info h2{ color:var(--ink); }
+body.light .sy-info > p{ color:var(--ink-soft); }
+body.light .sy-faq summary{ color:var(--ink); }
+body.light .sy-faq details p{ color:var(--ink-soft); }

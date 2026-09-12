@@ -342,3 +342,13 @@
   .site-footer-note .legal-links a:hover{
     color:var(--accent);
   }
+
+/* ---- SY Project 안내/FAQ 섹션 ---- */
+.sy-info{ margin-top:32px; padding-top:22px; border-top:1px solid var(--line-soft); }
+.sy-info h2{ font-family:'Space Grotesk', sans-serif; font-size:16px; color:var(--ink); margin-bottom:10px; }
+.sy-info > p{ font-size:13.5px; line-height:1.75; color:var(--muted); margin-bottom:16px; }
+.sy-faq details{ border-top:1px solid var(--line-soft); padding:12px 0; }
+.sy-faq summary{ cursor:pointer; font-weight:600; font-size:13.5px; color:var(--ink); list-style:none; }
+.sy-faq summary::-webkit-details-marker{ display:none; }
+.sy-faq summary::before{ content:'● '; color:var(--accent); font-size:9px; }
+.sy-faq details p{ margin-top:8px; font-size:13px; color:var(--muted); line-height:1.7; }
